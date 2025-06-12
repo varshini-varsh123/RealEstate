@@ -1,0 +1,89 @@
+.unique-footer {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 4rem 2rem 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-card {
+  background: #1f2937;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.footer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+}
+
+.footer-card h4 {
+  margin-bottom: 1rem;
+  color: #00b4d8;
+}
+
+.footer-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-card ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-card ul li a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-card ul li a:hover {
+  color: #00b4d8;
+}
+
+.footer-card form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.footer-card input {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: #374151;
+  color: white;
+}
+
+.footer-card button {
+  background: #00b4d8;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.footer-card button:hover {
+  background: #0096c7;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  border-top: 1px solid #374151;
+  padding-top: 1.5rem;
+}

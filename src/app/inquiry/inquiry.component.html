@@ -1,0 +1,64 @@
+<div [ngClass]="{'dark-mode': isDarkMode}" class="inquiry-dashboard-wrapper">
+  <div class="inquiry-dashboard-card animated-fade-in">
+      <h2 class="dashboard-title mb-4">Manage Inquiries</h2>
+
+      <div class="mb-5">
+          <h4 class="section-heading mb-3">Submit New Inquiry</h4>
+          <app-inquiry-form (inquiryCreated)="onInquiryCreated()"></app-inquiry-form>
+      </div>
+
+      <h4 class="section-heading mb-3">All Inquiries</h4>
+      <div class="table-responsive-modern">
+          <table class="modern-table">
+              <thead>
+                  <tr>
+                      <th><i class="fas fa-hashtag me-2"></i>ID</th>
+                      <th><i class="fas fa-user-circle me-2"></i>Questioner ID</th>
+                      <th><i class="fas fa-briefcase me-2"></i>Role</th>
+                      <th><i class="fas fa-user-tag me-2"></i>Seller ID</th>
+                      <th><i class="fas fa-home me-2"></i>Property ID</th>
+                      <th><i class="fas fa-comment-dots me-2"></i>Message</th>
+                      <th><i class="fas fa-reply me-2"></i>Response</th>
+                      <th *ngIf="role!=='BUYER'"><i class="fas fa-cogs me-2"></i>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let inquiry of inquiries; trackBy: trackByInquiryId">
+                      <td>{{ inquiry.inquiryId }}</td>
+                      <td>{{ inquiry.questionerId }}</td>
+                      <td>{{ inquiry.questionerRole }}</td>
+                      <td>{{ inquiry.sellerId }}</td>
+                      <td>{{ inquiry.propertyId }}</td>
+                      <td>{{ inquiry.message }}</td>
+                      <td>
+                          <ng-container *ngIf="editingId === inquiry.inquiryId; else viewResponse">
+                              <textarea [(ngModel)]="editableResponse" class="form-control modern-input response-input" rows="3"></textarea>
+                          </ng-container>
+                          <ng-template #viewResponse>
+                              <span class="inquiry-response-text">{{ inquiry.response || '— No Response —' }}</span>
+                          </ng-template>
+                      </td>
+                      <td>
+                          <ng-container *ngIf="editingId === inquiry.inquiryId; else editButton">
+                              <button *ngIf="role!=='BUYER'" class="action-btn save-btn me-2" (click)="updateResponse(inquiry)">
+                                  <i class="fas fa-save me-1"></i>Save
+                              </button>
+                              <button class="action-btn cancel-btn" (click)="cancelEdit()">
+                                  <i class="fas fa-times-circle me-1"></i>Cancel
+                              </button>
+                          </ng-container>
+                          <ng-template #editButton>
+                              <button *ngIf="role!=='BUYER'" class="action-btn edit-btn" (click)="enableEdit(inquiry)">
+                                  <i class="fas fa-edit me-1"></i>Edit Response
+                              </button>
+                          </ng-template>
+                      </td>
+                  </tr>
+                  <tr *ngIf="inquiries.length === 0">
+                      <td colspan="8" class="text-center no-data-message">No inquiries found.</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

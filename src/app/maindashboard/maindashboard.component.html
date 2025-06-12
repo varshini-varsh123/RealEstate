@@ -1,0 +1,128 @@
+<!-- <p>maindashboard works!</p>
+
+<button class="prop-dashboard-btn" [routerLink]="['/properties']">Go to Property Dashboard</button>
+
+<button class="booking-btn" [routerLink]="['/booking']">Go to booking Dashboard</button>
+<button class="inquiry-btn" [routerLink]="['/inquiry']">go to Inquiry Dashboard</button>
+<button class="payment-btn" [routerLink]="['/payment']">Go to Payment DashBoard</button> -->
+<!-- Sidebar Component -->
+<div class="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden font-sans">
+    <!-- Background Image with overlay -->
+    <div class="absolute inset-0 z-0 transform animate-background-zoom-pulse"
+      style="background-image: url('/myhouse2.jpg'); background-size: cover; background-position: center; filter: blur(2px); background-attachment: fixed;">
+    </div>
+    <!-- Overlay to darken the background image and improve text readability -->
+    <div class="absolute inset-0 z-10 bg-black/60"></div>
+  
+    <!-- Dashboard Content Container -->
+    <div class="relative z-20 p-6 sm:p-8 lg:p-12 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl max-w-4xl w-full mx-auto text-center
+                transform transition-all duration-300 ease-in-out hover:scale-[1.005] animate-float-subtle">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-tight animate-fade-in-down">
+        Real Estate Management Hub
+      </h1>
+      <p class="text-gray-700 text-lg sm:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto animate-fade-in-up delay-100">
+        Your centralized platform for seamless property, booking, inquiry, and payment management.
+      </p>
+  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+        <!-- Property Dashboard Button/Card -->
+        <a [routerLink]="['/properties']"
+           class="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg hover:shadow-xl
+                  transform transition-all duration-300 ease-in-out hover:scale-105 group cursor-pointer border border-blue-200 animate-slide-in-left delay-200">
+          <svg class="w-16 h-16 text-blue-600 mb-4 group-hover:text-blue-700 transition-colors duration-300 group-hover:rotate-6 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7-7-7M19 10v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001 1h2a1 1 0 001-1v-4a1 1 0 00-1-1H9a1 1 0 00-1 1v4m-6 0h10a1 1 0 001-1v-4a1 1 0 00-1-1H9a1 1 0 00-1 1v4"></path>
+          </svg>
+          <span class="text-2xl sm:text-3xl font-bold text-gray-800 group-hover:text-blue-800 transition-colors duration-300">
+            Properties
+          </span>
+          <p class="text-gray-600 text-sm mt-1">View and manage all listings</p>
+        </a>
+  
+        <!-- Booking Dashboard Button/Card -->
+        <a [routerLink]="['/booking']"
+           class="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-lg hover:shadow-xl
+                  transform transition-all duration-300 ease-in-out hover:scale-105 group cursor-pointer border border-green-200 animate-slide-in-right delay-300">
+          <svg class="w-16 h-16 text-green-600 mb-4 group-hover:text-green-700 transition-colors duration-300 group-hover:rotate-6 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M7 15h.01m12-8a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7z"></path>
+          </svg>
+          <span class="text-2xl sm:text-3xl font-bold text-gray-800 group-hover:text-green-800 transition-colors duration-300">
+            Bookings
+          </span>
+          <p class="text-gray-600 text-sm mt-1">Manage appointments and schedules</p>
+        </a>
+  
+        <!-- Inquiry Dashboard Button/Card -->
+        <a [routerLink]="['/inquiry']"
+           class="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg hover:shadow-xl
+                  transform transition-all duration-300 ease-in-out hover:scale-105 group cursor-pointer border border-purple-200 animate-slide-in-left delay-400">
+          <svg class="w-16 h-16 text-purple-600 mb-4 group-hover:text-purple-700 transition-colors duration-300 group-hover:rotate-6 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+          </svg>
+          <span class="text-2xl sm:text-3xl font-bold text-gray-800 group-hover:text-purple-800 transition-colors duration-300">
+            Inquiries
+          </span>
+          <p class="text-gray-600 text-sm mt-1">Review and respond to client queries</p>
+        </a>
+  
+        <!-- Payment Dashboard Button/Card -->
+        <a [routerLink]="['/pay-dash']"
+           class="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-lg hover:shadow-xl
+                  transform transition-all duration-300 ease-in-out hover:scale-105 group cursor-pointer border border-yellow-200 animate-slide-in-right delay-500">
+          <svg class="w-16 h-16 text-yellow-600 mb-4 group-hover:text-yellow-700 transition-colors duration-300 group-hover:rotate-6 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span class="text-2xl sm:text-3xl font-bold text-gray-800 group-hover:text-yellow-800 transition-colors duration-300">
+            Payments
+          </span>
+          <p class="text-gray-600 text-sm mt-1">Track transactions and financials</p>
+        </a>
+      </div>
+  
+      <!-- Quick Insights Section (Carousel-like) -->
+      <div class="mt-12 text-left animate-fade-in-up delay-600">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-6">Quick Insights</h2>
+        <div class="flex overflow-x-auto snap-x snap-mandatory space-x-6 p-4 scrollbar-hide">
+          <!-- Insight Card 1 -->
+          <div class="flex-shrink-0 snap-center w-64 sm:w-72 p-6 bg-white rounded-2xl shadow-lg border border-gray-200
+                      transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl animate-fade-in-up delay-700">
+            <div class="flex items-center mb-4">
+              <svg class="w-10 h-10 text-indigo-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+              <h4 class="text-xl font-bold text-gray-800">Market Trends</h4>
+            </div>
+            <p class="text-gray-600 text-base">Average property value increased by <span class="font-semibold text-green-600">3.5%</span> last month.</p>
+          </div>
+  
+          <!-- Insight Card 2 -->
+          <div class="flex-shrink-0 snap-center w-64 sm:w-72 p-6 bg-white rounded-2xl shadow-lg border border-gray-200
+                      transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl animate-fade-in-up delay-800">
+            <div class="flex items-center mb-4">
+              <svg class="w-10 h-10 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V6m0 4v2m0 4v2"/><circle cx="12" cy="12" r="10"/></svg>
+              <h4 class="text-xl font-bold text-gray-800">Revenue Growth</h4>
+            </div>
+            <p class="text-gray-600 text-base">Total revenue up by <span class="font-semibold text-orange-600">12%</span> in Q2, exceeding targets.</p>
+          </div>
+  
+          <!-- Insight Card 3 -->
+          <div class="flex-shrink-0 snap-center w-64 sm:w-72 p-6 bg-white rounded-2xl shadow-lg border border-gray-200
+                      transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl animate-fade-in-up delay-900">
+            <div class="flex items-center mb-4">
+              <svg class="w-10 h-10 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292V15m0 0v2m0-2a4 4 0 100 0V9a4 4 0 100 0zm0 0H7m5 0h5M12 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+              <h4 class="text-xl font-bold text-gray-800">Client Satisfaction</h4>
+            </div>
+            <p class="text-gray-600 text-base">Achieved <span class="font-semibold text-teal-600">98%</span> positive feedback on recent sales.</p>
+          </div>
+  
+          <!-- Insight Card 4 -->
+          <div class="flex-shrink-0 snap-center w-64 sm:w-72 p-6 bg-white rounded-2xl shadow-lg border border-gray-200
+                      transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl animate-fade-in-up delay-1000">
+            <div class="flex items-center mb-4">
+              <svg class="w-10 h-10 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2m0 0l-2 2v2m0 0l2 2m2 0h2m0 0l2-2v-2m0 0l-2-2m-2-2h-2m0 0l-2 2v2m0 0l2 2m0 0h2m0 0l2-2v-2m0 0l-2-2m-2-2H8m4 4v2m0-2h2m-2 0h-2m-2-2h-2m0 0l-2 2v2m0 0l2 2m0 0h2m0 0l2-2v-2m0 0l-2-2z"></path></svg>
+              <h4 class="text-xl font-bold text-gray-800">New Listings</h4>
+            </div>
+            <p class="text-gray-600 text-base"><span class="font-semibold text-red-600">15 new properties</span> added to the portfolio this week.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

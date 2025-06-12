@@ -1,43 +1,205 @@
-/* .search-bar .input-group {
-    border-radius: 30px;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+/* Header Container */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #004aad;
+}
+
+.logo img {
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.login-btn,
+.signup-btn,
+.logout-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.login-btn {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+.signup-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #0056b3;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+
+/* Contact Button */
+.contact-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #218838;
+}
+
+/* Profile Button */
+.profile-button {
+  font-size: 1.5rem;
+  color: #004aad;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile-button:hover {
+  transform: scale(1.1);
+}
+
+/* Hamburger Menu */
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #004aad;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
   }
-  
-  .search-bar .form-control {
-    border-radius: 0 30px 30px 0;
-    border-color: #ddd;
-    transition: border-color 0.3s ease;
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out;
   }
-  
-  .search-bar .input-group-text {
-    border-radius: 30px 0 0 30px;
-    border-color: #ddd;
-    transition: border-color 0.3s ease;
+
+  #menu-toggle:checked ~ .menu-icon + .logo + .nav-links {
+    display: flex;
   }
-  
-  .search-bar .form-control:focus {
-    border-color: #ff5722;
-    box-shadow: 0 0 0 0.2rem rgba(255, 87, 34, 0.25);
+
+  .nav-links a,
+  .nav-links button {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
   }
-  
-  .search-bar .input-group:focus-within .input-group-text {
-    border-color: #ff5722;
-    box-shadow: 0 0 0 0.2rem rgba(255, 87, 34, 0.25);
+
+  .auth-buttons {
+    flex-direction: column;
+    width: 100%;
   }
-   */
-   .navbar-brand {
-    font-size: 1.5rem;
-    color: #007bff;
+
+  .contact-btn,
+  .logout-btn,
+  .login-btn,
+  .signup-btn {
+    width: 100%;
   }
-  
-  .nav-link {
-    margin-left: 1rem;
-    font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .nav-link:hover,
-  .dropdown-item:hover {
-    color: #0056b3;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}

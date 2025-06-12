@@ -1,0 +1,170 @@
+<!-- <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+  
+      <div class="carousel-item active">
+        <h2>Our Story</h2>
+        <p>Founded with a vision to redefine real estate, we started as a small team with big dreams...</p>
+      </div>
+  
+      <div class="carousel-item">
+        <h2>Our Mission</h2>
+        <p>To deliver exceptional real estate experiences by combining market expertise...</p>
+      </div>
+  
+      <div class="carousel-item">
+        <h2>Why Choose Us</h2>
+        <ul>
+          <li>✔ Local Market Knowledge</li>
+          <li>✔ Transparent and Honest Dealings</li>
+          <li>✔ Personalized Property Solutions</li>
+        </ul>
+      </div>
+  
+      <div class="carousel-item">
+        <h2>Meet the Team</h2>
+        <p>Our team is made up of passionate professionals who are experts in real estate...</p>
+      </div>
+  
+      <div class="carousel-item">
+        <h2>Client Testimonials</h2>
+        <blockquote>"They made the process of buying our first home so easy!" – Aarti S.</blockquote>
+      </div>
+  
+      <div class="carousel-item">
+        <h2>Careers</h2>
+        <p>Join a dynamic team that’s shaping the future of real estate...</p>
+      </div>
+  
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+   -->
+  <div style="background-image: url('/bg2.jpg'); background-size: cover; background-position: center;">
+   <section class="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-5xl w-full mx-auto flex flex-col transform transition-all duration-300 ease-in-out hover:scale-[1.005]">
+    <!-- Carousel Image Section - Now with floating effect -->
+    <div class="relative h-72 sm:h-96 lg:h-[450px] overflow-hidden group
+      bg-white rounded-t-3xl shadow-xl transform transition-all duration-300 ease-in-out
+      hover:shadow-2xl hover:-translate-y-2
+      ">
+      <!-- Loop through images to create carousel slides -->
+      <img *ngFor="let src of images; let i = index"
+        [src]="src"
+        alt="Property image {{i + 1}}"
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out transform"
+        [ngClass]="{'opacity-100 scale-100': i === currentIndex, 'opacity-0 scale-105': i !== currentIndex}"
+        onerror="this.onerror=null;this.src='https://placehold.co/1200x800/DDDDDD/666666?text=Image+Unavailable';"
+      />
+  
+      <!-- Optional overlay for text or branding on image -->
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent flex flex-col justify-end p-6 sm:p-10 lg:p-14 z-10">
+        <h2 class="text-white text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
+          Discover Your <br class="hidden sm:inline"/>Dream Home
+        </h2>
+        <p class="text-gray-200 text-sm sm:text-base mt-2 drop-shadow-md">
+          Connecting you with exceptional properties and seamless experiences.
+        </p>
+      </div>
+  
+      <!-- Carousel Navigation Arrows -->
+      <button
+        (click)="goToPrev()"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-60 text-white p-3 rounded-full shadow-lg z-20 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+        aria-label="Previous slide"
+      >
+        <!-- Lucide ChevronLeft SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button
+        (click)="goToNext()"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-60 text-white p-3 rounded-full shadow-lg z-20 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+        aria-label="Next slide"
+      >
+        <!-- Lucide ChevronRight SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+  
+      <!-- Carousel Indicators -->
+      <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-30">
+        <button *ngFor="let image of images; let i = index"
+          (click)="goToSlide(i)"
+          class="w-3 h-3 rounded-full transition-all duration-300 border-2 border-white"
+          [ngClass]="{'bg-white scale-125': i === currentIndex, 'bg-transparent opacity-75': i !== currentIndex}"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+        ></button>
+      </div>
+    </div>
+  
+    <!-- Content Section -->
+    <div class="p-6 sm:p-10 lg:p-14 flex flex-col justify-center space-y-7 bg-gradient-to-br from-white to-blue-50 rounded-b-3xl">
+      <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+        Crafting Your Future, One Home at a Time
+      </h3>
+      <p class="text-gray-700 text-base sm:text-lg leading-relaxed border-l-4 border-blue-400 pl-4 italic">
+        "Finding your perfect home is more than a transaction; it's about realizing your dreams.
+        We are dedicated to making that journey not just successful, but truly enjoyable."
+      </p>
+      <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+        At Prime Estates, we blend innovative solutions with personalized service to redefine
+        your real estate experience. Our commitment to excellence and deep market insights
+        ensure you always make the best decision for your future.
+      </p>
+  
+      <!-- Key Features/Values Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+        <app-feature-card
+          [icon]="'home'"
+          title="Diverse Portfolio"
+          description="Explore an unparalleled selection of homes, from urban lofts to serene suburban estates."
+        ></app-feature-card>
+        <app-feature-card
+          [icon]="'key'"
+          title="Tailored Expertise"
+          description="Leverage our market intelligence and bespoke advice for informed choices."
+        ></app-feature-card>
+        <app-feature-card
+          [icon]="'users'"
+          title="Unwavering Support"
+          description="Experience a partnership built on trust, transparency, and dedicated client service."
+        ></app-feature-card>
+        <app-feature-card
+          [icon]="'home'"
+          title="Streamlined Process"
+          description="Navigate the buying or selling journey with ease, guided by our efficient systems."
+        ></app-feature-card>
+      </div>
+  
+      <!-- Call to Action -->
+      <div class="pt-8 flex justify-center lg:justify-start">
+        <a routerLink="/properties"
+           class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-semibold rounded-full shadow-lg text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-offset-2 transform transition-all duration-300 ease-in-out hover:scale-105 active:scale-95">
+          Begin Your Search
+          <svg class="ml-3 -mr-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  </div>
+  
+<!--   
+  
+   <div class="container">
+    <div class="carousel">
+      <div class="carousel__face"><span>This is something</span></div>
+      <div class="carousel__face"><span>Very special</span></div>
+      <div class="carousel__face"><span>Special is the key</span></div>
+      <div class="carousel__face"><span>For you</span></div>
+      <div class="carousel__face"><span>Just give it</span></div>
+      <div class="carousel__face"><span>A try</span></div>
+      <div class="carousel__face"><span>And see</span></div>
+      <div class="carousel__face"><span>How IT Works</span></div>
+      <div class="carousel__face"><span>Woow</span></div>
+    </div>
+  </div> -->

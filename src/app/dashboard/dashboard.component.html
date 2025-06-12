@@ -1,0 +1,170 @@
+<!-- <app-payment [propertyId]="selectedPropertyId"></app-payment> -->
+<div [ngClass]="{'dark-mode': isDarkMode}" class="dashboard-container">
+  <div class="form-check form-switch d-flex justify-content-end mb-4 me-3">
+    <input class="form-check-input theme-switch" type="checkbox" id="darkModeSwitch" (change)="toggleDarkMode($event)">
+    <label class="form-check-label ms-2 text-muted" for="darkModeSwitch">Toggle Dark Mode</label>
+  </div>
+  <!-- recently modified code -->
+  <div *ngIf="authService.isLoggedIn$ | async" class="search-bar">
+    <input type="text" [(ngModel)]="location" placeholder="Search properties..." />
+    <button (click)="toggleFilters()">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+
+
+  <div class="filter-card" *ngIf="showFilters">
+     <button class="close-btn" (click)="toggleFilters()">×</button>
+    <h3>Filter Properties</h3>
+    <label>Location: <input type="string" [(ngModel)]="location" /></label>
+    <label>Min Price: <input type="number" [(ngModel)]="minPrice" /></label>
+    <label>Max Price: <input type="number" [(ngModel)]="maxPrice" /></label>
+    <label>Type:
+      <select [(ngModel)]="type">
+        <option value="apartment">Apartment</option>
+        <option value="house">House</option>
+      </select>
+    </label>
+    <button (click)="applyFilters()">Apply</button>
+  </div>
+
+<!-- upto this -->
+ <div>
+  <h1 class="text-center dashboard-title mb-5">Property Listings</h1>
+</div>
+
+  <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+    <button class="modern-btn primary-btn" (click)="getAllProperties()">
+      <i class="fas fa-search-dollar me-2"></i>All Properties
+    </button>
+<!-- new -->
+    <button class="modern-btn success-btn" (click)="getPropById()"
+      *ngIf="authService.hasRole(['SELLER'])">
+      <i class="fa-brands fa-get-pocket me-2"></i>Get My Prop
+    </button>
+<!-- new end -->
+    <button class="modern-btn secondary-btn" (click)="getPropertyById()">
+      <i class="fas fa-search me-2"></i>Property by ID
+    </button>
+    <button class="modern-btn success-btn" (click)="saveProperty()"
+      *ngIf="authService.hasRole(['ADMIN', 'SELLER','AGENT'])">
+      <i class="fas fa-plus-circle me-2"></i>Add New Property
+    </button>
+    <button class="modern-btn warning-btn" (click)="getSoldOutProperties()">
+      <i class="fas fa-tag me-2"></i>Sold Out
+    </button>
+  </div>
+
+  <div class="row animated-cards">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+      *ngFor="let property of pagedProperties; trackBy: trackByPropertyId">
+      <div class="property-card">
+        <!-- New: Image section moved to the top -->
+        <div class="property-image-wrapper">
+          <img [src]="getImagePath(property)" alt="Property Image" class="property-image">
+        </div>
+        <div class="card-content">
+          <ng-container *ngIf="editId !== property.propertyId; else editMode">
+            <h5 class="card-title-main">{{ property.title }}</h5>
+            <div class="action-buttons-container">
+              <!-- Schedule Visit Button -->
+              <button class="action-button schedule-visit-btn" (click)="Booking(property)">
+                <i class="fas fa-calendar-alt button-icon"></i> Schedule Visit
+              </button>
+              <!-- Inquire Now Button -->
+              <button class="action-button inquire-now-btn" (click)="Inquiry(property)">
+                <i class="fas fa-envelope button-icon"></i> Inquire Now
+              </button>
+            </div>
+            <p class="card-text"><i class="fas fa-map-marker-alt me-2"></i><strong>Location:</strong> {{
+              property.location }}</p>
+            <p class="card-text"><i class="fas fa-dollar-sign me-2"></i><strong>Price:</strong> ${{ property.price |
+              number }}</p>
+            <p class="card-text"><i class="fas fa-home me-2"></i><strong>Type:</strong> {{ property.type }}</p>
+            <p class="card-text"><i class="fas fa-arrows-alt me-2"></i><strong>Size:</strong> {{ property.size }} sqft
+            </p>
+            <p class="card-text"><i class="fas fa-bed me-2"></i><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+            <p class="card-text"><i class="fas fa-bath me-2"></i><strong>Bathrooms:</strong> {{ property.bathrooms }}
+            </p>
+            <p class="card-text"><i class="fas fa-info-circle me-2"></i><strong>Status:</strong> <span
+                [ngClass]="{'status-active': property.status === 'Available', 'status-sold': property.status === 'Sold Out'}">{{
+                property.status }}</span></p>
+
+            <div class="d-flex justify-content-around mt-4">
+              <button class="action-btn edit-btn" (click)="enableEdit(property)"
+                *ngIf="authService.hasRole(['ADMIN', 'SELLER','AGENT']) && property.sellerId==userId">
+                <i class="fas fa-edit me-1"></i>Edit
+              </button>
+              <button class="action-btn delete-btn" (click)="deleteProperty(property.propertyId)"
+                *ngIf="authService.hasRole(['ADMIN', 'SELLER','AGENT']) && property.sellerId==userId">
+                <i class="fas fa-trash-alt me-1"></i>Delete
+              </button>
+
+              <button  class="action-btn buy-btn" (click)="pay(property)" *ngIf="property.status !== 'sold' && authService.hasRole(['ADMIN', 'SELLER', 'AGENT','BUYER'])">
+                 <i class="fas fa-shopping-cart me-1"></i>BUY
+              </button>
+
+            </div>
+          </ng-container>
+
+          <ng-template #editMode>
+            <input [(ngModel)]="property.title" class="form-control mb-2 modern-input" placeholder="Title" />
+            <input [(ngModel)]="property.location" class="form-control mb-2 modern-input" placeholder="Location" />
+            <input [(ngModel)]="property.price" type="number" class="form-control mb-2 modern-input"
+              placeholder="Price" />
+            <input [(ngModel)]="property.type" class="form-control mb-2 modern-input" placeholder="Type" />
+            <input [(ngModel)]="property.size" type="number" class="form-control mb-2 modern-input"
+              placeholder="Size (sqft)" />
+            <input [(ngModel)]="property.bedrooms" type="number" class="form-control mb-2 modern-input"
+              placeholder="Bedrooms" />
+            <input [(ngModel)]="property.bathrooms" type="number" class="form-control mb-2 modern-input"
+              placeholder="Bathrooms" />
+            <input [(ngModel)]="property.status" class="form-control mb-3 modern-input" placeholder="Status" />
+
+            <div class="d-flex justify-content-around mt-3">
+              <button class="action-btn save-btn" (click)="saveEdit(property)">
+                <i class="fas fa-save me-1"></i>Save
+              </button>
+              <button class="action-btn cancel-btn" (click)="cancelEdit()">
+                <i class="fas fa-times-circle me-1"></i>Cancel
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav *ngIf="totalPages > 1" class="mt-5 d-flex justify-content-center">
+    <ul class="pagination modern-pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <li class="page-item" *ngFor="let page of getPagesArray(); let i = index" [class.active]="currentPage === i + 1">
+        <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="carousel-wrapper">
+    <div class="container">
+      <div class="carousel">
+        <div class="carousel__face face-1"></div>
+        <div class="carousel__face face-2"></div>
+        <div class="carousel__face face-3"></div>
+        <div class="carousel__face face-4"></div>
+        <div class="carousel__face face-5"></div>
+        <div class="carousel__face face-6"></div>
+        <div class="carousel__face face-7"></div>
+        <div class="carousel__face face-8"></div>
+        <div class="carousel__face face-9"></div>
+      </div>
+    </div>
+  </div>
+</div>

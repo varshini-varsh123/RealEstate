@@ -1,5 +1,72 @@
-.center {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
+.login-page {
+  height: 100vh;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInBackground 1.5s ease-in;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.8s ease-out;
+}
+
+.login-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 2rem;
+  color: #fff;
+}
+
+.btn-close {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #574b90;
+  transform: scale(1.05);
+}
+
+a.text-primary {
+  color: #6c63ff !important;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

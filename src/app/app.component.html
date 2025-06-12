@@ -1,4 +1,6 @@
-<header></header>
-<!-- <login></login> -->
 <!-- <landing></landing> -->
+ <div class="min-h-screen bg-gray-50 font-sans">
+    <header (openSidebar)="sidebar.isOpen = true"></header>
+    <app-sidebar #sidebar [isOpen]="sidebar.isOpen" (closeSidebar)="sidebar.isOpen = false"></app-sidebar>
 <router-outlet></router-outlet>
+</div>

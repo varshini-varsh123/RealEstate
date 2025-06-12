@@ -1,0 +1,90 @@
+<div [ngClass]="{'dark-mode': isDarkMode}" class="form-wrapper">
+  <div class="form-check form-switch d-flex justify-content-end mb-4 me-3">
+      <input class="form-check-input theme-switch" type="checkbox" id="darkModeSwitchForm" (change)="toggleDarkMode($event)">
+      <label class="form-check-label ms-2 text-muted" for="darkModeSwitchForm">Toggle Dark Mode</label>
+  </div>
+
+  <div class="form-container animated-form">
+      <h2 class="form-title">Add New Property</h2>
+      <form (ngSubmit)="onSubmit()" #propertyForm="ngForm" class="property-form">
+          <div class="form-field">
+              <label for="title">Title:</label>
+              <input type="text" id="title" name="title" [(ngModel)]="property.title" required class="modern-input" placeholder="e.g., Spacious Family Home">
+              <div *ngIf="propertyForm.controls['title']?.invalid && (propertyForm.controls['title']?.dirty || propertyForm.controls['title']?.touched)" class="error-message">
+                  Title is required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="location">Location:</label>
+              <input type="text" id="location" name="location" [(ngModel)]="property.location" required class="modern-input" placeholder="e.g., New York, USA">
+              <div *ngIf="propertyForm.controls['location']?.invalid && (propertyForm.controls['location']?.dirty || propertyForm.controls['location']?.touched)" class="error-message">
+                  Location is required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="price">Price:</label>
+              <input type="number" id="price" name="price" [(ngModel)]="property.price" required class="modern-input" placeholder="e.g., 500000">
+              <div *ngIf="propertyForm.controls['price']?.invalid && (propertyForm.controls['price']?.dirty || propertyForm.controls['price']?.touched)" class="error-message">
+                  Price is required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="type">Type:</label>
+              <input type="text" id="type" name="type" [(ngModel)]="property.type" required class="modern-input" placeholder="e.g., House, Apartment, Villa">
+              <div *ngIf="propertyForm.controls['type']?.invalid && (propertyForm.controls['type']?.dirty || propertyForm.controls['type']?.touched)" class="error-message">
+                  Type is required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="size">Size (sqft):</label>
+              <input type="number" id="size" name="size" [(ngModel)]="property.size" required class="modern-input" placeholder="e.g., 2500">
+              <div *ngIf="propertyForm.controls['size']?.invalid && (propertyForm.controls['size']?.dirty || propertyForm.controls['size']?.touched)" class="error-message">
+                  Size is required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="bedrooms">Bedrooms:</label>
+              <input type="number" id="bedrooms" name="bedrooms" [(ngModel)]="property.bedrooms" required class="modern-input" placeholder="e.g., 3">
+              <div *ngIf="propertyForm.controls['bedrooms']?.invalid && (propertyForm.controls['bedrooms']?.dirty || propertyForm.controls['bedrooms']?.touched)" class="error-message">
+                  Bedrooms are required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="bathrooms">Bathrooms:</label>
+              <input type="number" id="bathrooms" name="bathrooms" [(ngModel)]="property.bathrooms" required class="modern-input" placeholder="e.g., 2">
+              <div *ngIf="propertyForm.controls['bathrooms']?.invalid && (propertyForm.controls['bathrooms']?.dirty || propertyForm.controls['bathrooms']?.touched)" class="error-message">
+                  Bathrooms are required.
+              </div>
+          </div>
+
+          <div class="form-field">
+              <label for="status">Status:</label>
+              <select id="status" name="status" [(ngModel)]="property.status" required class="modern-select">
+                  <option value="available">Available</option>
+                  <option value="sold">Sold</option>
+              </select>
+              <div *ngIf="propertyForm.controls['status']?.invalid && (propertyForm.controls['status']?.dirty || propertyForm.controls['status']?.touched)" class="error-message">
+                  Status is required.
+              </div>
+          </div>
+          
+          <div class="form-field">
+              <label for="sellerId">Seller ID:</label>
+              <input type="number" id="sellerId" name="sellerId" [(ngModel)]="property.sellerId" required class="modern-input" placeholder="e.g., 123">
+              <div *ngIf="propertyForm.controls['sellerId']?.invalid && (propertyForm.controls['sellerId']?.dirty || propertyForm.controls['sellerId']?.touched)" class="error-message">
+                  Seller ID is required.
+              </div>
+          </div>
+
+          <button type="submit" class="submit-btn" [disabled]="!propertyForm.valid">
+              <i class="fas fa-paper-plane me-2"></i>Save Property
+          </button>
+      </form>
+  </div>
+</div>

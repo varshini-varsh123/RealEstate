@@ -1,0 +1,42 @@
+<div class="form-card-modern animated-fade-in" [ngClass]="{'dark-mode': isDarkMode}">
+  <h4 class="form-title-modern">Create New Booking</h4>
+  <form [formGroup]="bookingForm" (ngSubmit)="submitForm()">
+      <div class="form-row-modern">
+          <div class="form-group-modern">
+              <label for="visitorId">Visitor ID</label>
+              <input id="visitorId" class="modern-input" formControlName="visitorId" placeholder="e.g., 101" type="number" />
+              <div *ngIf="bookingForm.controls['visitorId'].invalid && (bookingForm.controls['visitorId'].dirty || bookingForm.controls['visitorId'].touched)" class="error-message">
+                  Visitor ID is required.
+              </div>
+          </div>
+          <div class="form-group-modern">
+              <label for="visitorRole">Visitor Role</label>
+              <input id="visitorRole" class="modern-input" formControlName="visitorRole" placeholder="e.g., Buyer" />
+              <div *ngIf="bookingForm.controls['visitorRole'].invalid && (bookingForm.controls['visitorRole'].dirty || bookingForm.controls['visitorRole'].touched)" class="error-message">
+                  Visitor Role is required.
+              </div>
+          </div>
+      </div>
+
+      <div class="form-row-modern">
+          <div class="form-group-modern">
+              <label for="sellerId">Seller ID</label>
+              <input id="sellerId" class="modern-input" formControlName="sellerId" placeholder="e.g., 205" type="number" />
+              <div *ngIf="bookingForm.controls['sellerId'].invalid && (bookingForm.controls['sellerId'].dirty || bookingForm.controls['sellerId'].touched)" class="error-message">
+                  Seller ID is required.
+              </div>
+          </div>
+          <div class="form-group-modern">
+              <label for="propertyId">Property ID</label>
+              <input id="propertyId" class="modern-input" formControlName="propertyId" placeholder="e.g., 302" type="number" />
+              <div *ngIf="bookingForm.controls['propertyId'].invalid && (bookingForm.controls['propertyId'].dirty || bookingForm.controls['propertyId'].touched)" class="error-message">
+                  Property ID is required.
+              </div>
+          </div>
+      </div>
+      
+      <button class="submit-btn mt-4" type="submit" [disabled]="bookingForm.invalid">
+          <i class="fas fa-plus-circle me-2"></i>Create Booking
+      </button>
+  </form>
+</div>

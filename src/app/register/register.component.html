@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Registration Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            background-size: cover;
+ 
+min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .registration-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .form-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .form-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+ 
+color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .form-title {
+            font-weight: 700;
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .form-body {
+            padding: 30px;
+            background-color: white;
+        }
+        
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-right: none;
+            color: #6e8efb;
+        }
+        
+        .form-control {
+            border-left: none;
+            padding: 12px 15px;
+        }
+        
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+        
+        .form-select {
+            padding: 12px 15px;
+        }
+        
+        .btn-register {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+ 
+    .btn-register:hover {
+            background: linear-gradient(135deg, #5a7bf9, #9666d8);
+            transform: translateY(-2px);
+        }
+        
+        .features-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #6e8efb;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-text {
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .features-col {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container container">
+        <div class="row">
+            <!-- Registration Form Column -->
+            <div class="col-lg-7">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2 class="form-title"><i class="fas fa-user-plus me-2"></i>Create Account</h2>
+                    </div>
+                    <div class="form-body">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+                            <!-- Name Field -->
+                            <div class="mb-4 input-group">
+                                <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                <input type="text" class="form-control" formControlName="name" placeholder="Enter your Full Name" required>
+                            </div>
+                            
+                            <!-- Email Field -->
+                            <div class="mb-4 input-group">
+                                <span class="input-group-text"> <i class="fas fa-envelope"></i> </span>
+                                <input type="email" class="form-control" formControlName="email" placeholder="Enter your email" required>
+                            </div>
+ 
+   <!-- Password Field -->
+                            <div class="mb-4 input-group">
+                                <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+                                <input type="password" class="form-control" formControlName="password" placeholder="Enter your password" required>
+                            </div>
+                            
+                            <!-- Confirm Password Field (Uncommented and styled) -->
+                            <!-- <div class="mb-4 input-group">
+                                <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
+                                <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm your password" required>
+                            </div> -->
+                            
+                            <!-- Role Selection -->
+                            <div class="mb-4 input-group">
+                                <span class="input-group-text"> <i class="fas fa-user-shield"></i></span>
+                                <select class="form-select" formControlName="roles" required>
+                                    <option value="" disabled selected>Select a role</option>
+                                    <option value="ADMIN">ADMIN</option>
+                                    <option value="BUYER">BUYER</option>
+                                    <option value="SELLER">SELLER</option>
+                                    <option value="AGENT">AGENT</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary w-100 btn-register">
+                                <i class="fas fa-user-plus me-2"></i>Register Now
+                            </button>
+                            
+                            <!-- Login Link -->
+                            <div class="text-center mt-3">
+                                <p>Already have an account? <a href="#" class="text-decoration-none">Sign In</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+ 
+   <!-- Features Column -->
+            <div class="col-lg-5 features-col">
+                <div class="features-card">
+                    <h3 class="text-center mb-4">Why Join Us?</h3>
+                    
+                    <div class="row">
+                        <!-- Feature 1 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h5 class="feature-title">Secure Platform</h5>
+                                <p class="feature-text">Your data is protected with advanced encryption.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h5 class="feature-title">Fast Processing</h5>
+                                <p class="feature-text">Quick registration and instant access.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 3 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h5 class="feature-title">24/7 Support</h5>
+                                <p class="feature-text">Our team is always ready to help you.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 4 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h5 class="feature-title">Growth Tools</h5>
+                                <p class="feature-text">Access powerful features to grow your business.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <p class="small text-muted">By registering, you agree to our <a href="#" class="text-decoration-none">Terms</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+ 

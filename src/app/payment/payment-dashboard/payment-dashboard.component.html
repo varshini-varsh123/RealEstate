@@ -1,0 +1,103 @@
+<mat-card class="payments-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon aria-hidden="false" aria-label="Payments Icon">receipt_long</mat-icon>
+        Payment Transactions
+      </mat-card-title>
+      <mat-card-subtitle>A comprehensive view of all your payment records.</mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width-search">
+        <mat-label>Search Payments</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="e.g., success, john.doe" #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+      <div class="mat-elevation-z8 payments-table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+  
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.id }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="razorpayOrderId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</th>
+            <td mat-cell *matCellDef="let payment">
+              <span class="order-id-text" title="Click to copy">{{ payment.razorpayOrderId }}</span>
+              <button mat-icon-button class="copy-button" (click)="copyToClipboard(payment.razorpayOrderId)">
+                <mat-icon>content_copy</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let payment">
+              <span class="status-badge" [ngClass]="getStatusClass(payment.status)">
+                <i class="fas" [ngClass]="getStatusIcon(payment.status)"></i>
+                {{ payment.status | titlecase }}
+              </span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.email }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+            <td mat-cell *matCellDef="let payment" class="amount-cell">
+              <i class="fas fa-indian-rupee-sign"></i> {{ payment.amount }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.userId }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="sellerId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Seller ID</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.sellerId }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.createdAt | date:'short' }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="propertyId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Property ID</th>
+            <td mat-cell *matCellDef="let payment">{{ payment.propertyId }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let payment">
+              <button mat-icon-button color="primary" (click)="viewDetails(payment)" title="View Details">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="downloadInvoice(payment)" title="Download Invoice">
+                <mat-icon>download</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="voidPayment(payment)" title="Void Payment (if applicable)">
+                <mat-icon class="fa-solid fa-ban"></mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="payment-row"></tr>
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="10">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+  
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of payments"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>

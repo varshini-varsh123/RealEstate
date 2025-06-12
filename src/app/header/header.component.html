@@ -1,37 +1,50 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold" routerLink="/">RealEstateApp</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div
+  class="header fixed top-0 left-0 right-0 z-30 w-full bg-white/90 backdrop-blur-md shadow-lg p-4 flex items-center justify-between h-20">
+  <button (click)="openSidebar.emit()"
+    class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+    aria-label="Open navigation menu">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
+    <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
 
-        <!-- Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="propertyDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Properties
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="propertyDropdown">
-            <li><a class="dropdown-item" routerLink="/properties">All Listings</a></li>
-            <li><a class="dropdown-item" routerLink="/post-property">Post Property</a></li>
-            <li><a class="dropdown-item" routerLink="/favorites">Favorites</a></li>
-          </ul>
-        </li>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/register">Register</a>
-        </li>
-      </ul>
-    </div>
+    </svg>
+
+  </button>
+
+  <input type="checkbox" id="menu-toggle" />
+
+  <label for="menu-toggle" class="menu-icon">
+    <i class="fa-solid fa-bars-staggered"></i>
+  </label>
+
+
+  <div class="logo">
+    <img src="logo4.png" alt="Logo" />
+    <span>Aditya Estate</span>
   </div>
-</nav>
+  <nav class="nav-links">
+    <a href="#">Home</a>
+    <a href="/about">About</a>
+    <a (click)="navigateToDashboard()">Properties</a>
+    <a (click)="navigateToMainDashBoard()">Dashboard</a>
+
+    <div class="auth-buttons">
+      <ng-container *ngIf="!(authService.isLoggedIn$ | async) && !isOnAuthPage">
+        <a routerLink="/login" class="btn login-btn">Login</a>
+        <button routerLink="/register" class="signup-btn">Sign Up</button>
+      </ng-container>
+      <button *ngIf="authService.isLoggedIn$ | async" (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+    <button class="contact-btn">Contact Us <span class="arrow">→</span></button>
+
+    <div>
+      <button mat-icon-button (click)="openProfile()" class="profile-button" aria-label="Profile">
+        <i class="fas fa-user-circle"></i>
+      </button>
+    </div>
+
+  </nav>
+
+</div>

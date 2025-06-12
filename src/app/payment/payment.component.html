@@ -1,0 +1,39 @@
+<div class="payment-status-card">
+  <h2>Property Purchase</h2>
+
+  <div *ngIf="!show && !error" class="payment-processing">
+    <div class="spinner"></div>
+    <h3>Processing Your Payment...</h3>
+    <p>You're just a moment away from owning property ID: <strong>{{ propertyId }}</strong>.</p>
+    <p>Amount: <strong>₹{{ amount }}</strong></p>
+    <p>Please wait while we securely redirect you to Razorpay to complete your purchase.</p>
+  </div>
+
+  <div *ngIf="show" class="payment-success">
+    <div class="icon-circle success-circle">
+      <svg width="auto" height="auto" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+    </div>
+    <h3>Payment Successful! 🎉</h3>
+    <p>Congratulations! Your property (ID: <strong>{{ propertyId }}</strong>) has been successfully purchased and is now marked as <strong>sold</strong>.</p>
+    <p>A confirmation email with transaction details has been sent to your registered email address.</p>
+    <button class="back-to-properties-btn" (click)="navigateToProperties()">Explore More Properties</button>
+  </div>
+
+  <div *ngIf="error" class="payment-failure">
+    <div class="icon-circle error-circle">
+      <svg width=auto height=auto class="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="cross-circle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="cross-path-1" fill="none" d="M16 16 36 36"/>
+        <path class="cross-path-2" fill="none" d="M36 16 16 36"/>
+      </svg>
+    </div>
+    <h3>Payment Failed 😟</h3>
+    <p>Unfortunately, your payment could not be processed.</p>
+    <p class="error-detail">Reason: {{ error }}</p>
+    <p>Please review your payment details and try again, or contact support if the issue persists.</p>
+    <button class="retry-payment-btn" (click)="retryPayment()">Try Again</button>
+  </div>
+</div>

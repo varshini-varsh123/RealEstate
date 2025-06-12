@@ -1,0 +1,29 @@
+/* src/app/app.component.css */
+
+/* Basic body styling or font definitions */
+body {
+  font-family: 'Arial', sans-serif; /* Or any other desired font */
+  line-height: 1.6;
+  color: #333;
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+  box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* General section padding/margin if not handled by individual components */
+section {
+  padding: 4rem 0; /* Example: default vertical padding for sections */
+}
+
+/* A common utility to clear floats if needed */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

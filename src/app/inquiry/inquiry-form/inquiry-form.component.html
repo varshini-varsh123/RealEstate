@@ -1,0 +1,50 @@
+<div class="form-card-modern animated-fade-in" [ngClass]="{'dark-mode': isDarkMode}">
+  <h4 class="form-title-modern">Submit New Inquiry</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-row-modern">
+          <div class="form-group-modern">
+              <label for="questionerId">Questioner ID</label>
+              <input id="questionerId" class="modern-input" formControlName="questionerId" placeholder="e.g., 101" type="number" />
+              <div *ngIf="form.controls['questionerId'].invalid && (form.controls['questionerId'].dirty || form.controls['questionerId'].touched)" class="error-message">
+                  Questioner ID is required and must be a positive number.
+              </div>
+          </div>
+          <div class="form-group-modern">
+              <label for="questionerRole">Questioner Role</label>
+              <input id="questionerRole" class="modern-input" formControlName="questionerRole" placeholder="e.g., Visitor" />
+              <div *ngIf="form.controls['questionerRole'].invalid && (form.controls['questionerRole'].dirty || form.controls['questionerRole'].touched)" class="error-message">
+                  Questioner Role is required.
+              </div>
+          </div>
+      </div>
+
+      <div class="form-row-modern">
+          <div class="form-group-modern">
+              <label for="sellerId">Seller ID</label>
+              <input id="sellerId" class="modern-input" formControlName="sellerId" placeholder="e.g., 205" type="number" />
+              <div *ngIf="form.controls['sellerId'].invalid && (form.controls['sellerId'].dirty || form.controls['sellerId'].touched)" class="error-message">
+                  Seller ID is required and must be a positive number.
+              </div>
+          </div>
+          <div class="form-group-modern">
+              <label for="propertyId">Property ID</label>
+              <input id="propertyId" class="modern-input" formControlName="propertyId" placeholder="e.g., 302" type="number" />
+              <div *ngIf="form.controls['propertyId'].invalid && (form.controls['propertyId'].dirty || form.controls['propertyId'].touched)" class="error-message">
+                  Property ID is required and must be a positive number.
+              </div>
+          </div>
+      </div>
+
+      <div class="form-group-modern full-width">
+          <label for="message">Your Message</label>
+          <textarea id="message" class="modern-input textarea-message" formControlName="message" placeholder="Type your inquiry message here..." rows="4"></textarea>
+          <div *ngIf="form.controls['message'].invalid && (form.controls['message'].dirty || form.controls['message'].touched)" class="error-message">
+              Message is required.
+          </div>
+      </div>
+      
+      <button class="submit-btn mt-4" type="submit" [disabled]="form.invalid">
+          <i class="fas fa-paper-plane me-2"></i>Submit Inquiry
+      </button>
+  </form>
+</div>

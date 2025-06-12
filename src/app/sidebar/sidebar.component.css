@@ -1,0 +1,106 @@
+/* Custom keyframe animations for entrance effects */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* New keyframe for subtle floating animation */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); } /* Gentle up/down movement */
+}
+
+/* New keyframe for subtle background zoom pulse */
+@keyframes background-zoom-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); } /* Slight zoom in and out */
+}
+
+
+/* Apply animations with Tailwind's @apply (assuming PostCSS setup for Tailwind) */
+/* Or, directly apply them in HTML with `animate-[name_duration_timing-function_fill-mode]` */
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.animate-background-zoom-pulse {
+  animation: background-zoom-pulse 15s ease-in-out infinite;
+}
+
+/* Define delays for staggered animations (these are used directly in HTML) */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1.0s; }
+
+
+/* Custom styles to hide scrollbar for horizontal carousel-like section */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* For IE and Edge */
+    scrollbar-width: none;  /* For Firefox */
+}
