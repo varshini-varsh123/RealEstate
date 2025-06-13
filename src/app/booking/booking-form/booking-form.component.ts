@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class BookingFormComponent implements OnInit { // Implement OnInit
   sellerId: number;
   visitorRole: string = localStorage.getItem("role");
-  propertyId: number;
+  propertyId: number=parseInt(localStorage.getItem("propertyId"));
   visitorId:number=parseInt(localStorage.getItem("userId"));
   bookingForm: FormGroup;
   isDarkMode: boolean = false; // Add dark mode state for consistency
@@ -33,7 +33,7 @@ export class BookingFormComponent implements OnInit { // Implement OnInit
 
     const navigation = this.router.getCurrentNavigation();
     this.sellerId = navigation?.extras.state?.['sellerId'];
-    this.propertyId=navigation?.extras.state?.['propertyId']
+    //this.propertyId=navigation?.extras.state?.['propertyId']
 
     this.bookingForm.patchValue({
       visitorId: this.visitorId,

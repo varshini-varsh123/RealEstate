@@ -28,7 +28,7 @@ export const routes: Routes = [
     {path:'main',component:MaindashboardComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
     {path:'inquiry',component:InquiryComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
     {path:'payment',component:PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    { path: 'payment/:propertyId', component: PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] } },
+    { path:'payment/:propertyId', component: PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] } },
     {path:'about',component:AboutComponent},
     {path:'sidebar',component:SidebarComponent},
     {path:'bookform',component:BookingFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},

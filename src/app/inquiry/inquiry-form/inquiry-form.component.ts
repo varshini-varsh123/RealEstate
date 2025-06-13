@@ -16,7 +16,7 @@ export class InquiryFormComponent implements OnInit {
 
   sellerId: number;
   questionerRole: string = localStorage.getItem("role");
-  propertyId: number;
+  propertyId: number=parseInt(localStorage.getItem("propertyId"));
   questionerId:number=parseInt(localStorage.getItem("userId"));
 
   @Output() inquiryCreated = new EventEmitter<void>();
@@ -34,7 +34,7 @@ export class InquiryFormComponent implements OnInit {
 
     const navigation = this.router.getCurrentNavigation();
     this.sellerId = navigation?.extras.state?.['sellerId'];
-    this.propertyId=navigation?.extras.state?.['propertyId'];
+    //this.propertyId=navigation?.extras.state?.['propertyId'];
 
     this.form.patchValue({
       questionerId: this.questionerId,

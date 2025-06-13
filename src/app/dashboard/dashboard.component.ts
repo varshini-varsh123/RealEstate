@@ -232,7 +232,7 @@
 
 
 // dashboard.component.ts
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PropertyService } from '../services/property.service';
 import { Property } from '../models/property.model';
 import { Router } from '@angular/router';
@@ -271,7 +271,8 @@ export class DashboardComponent implements OnInit {
     private propertyService: PropertyService,
     private router: Router,
     public authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private cd: ChangeDetectorRef
   ) { } // Removed initial call here, better to call in ngOnInit
 
   ngOnInit(): void {
@@ -321,17 +322,20 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllProperties(): void {
+    alert("Fetching all properties...");
     this.propertyService.getProperties().subscribe({
       next: (data) => {
         this.properties = data; // Store all properties
         this.currentPage = 1; // Reset to first page when new data is loaded
         this.updatePagination();
         this.loading = false;
+        this.cd.detectChanges(); 
       },
       error: (err) => {
         console.error('Error fetching all properties:', err);
         this.loading = false;
       }
+      
     });
   }
 
@@ -342,6 +346,7 @@ export class DashboardComponent implements OnInit {
         this.currentPage = 1; // Reset to first page
         this.updatePagination();
         this.loading = false;
+        this.cd.detectChanges(); 
         console.log("These are my properties", this.properties);
       },
       error: (err) => {
@@ -376,6 +381,7 @@ export class DashboardComponent implements OnInit {
           this.totalPages = 1; // Only one page if showing a single item
           this.currentPage = 1;
           console.log('Property by ID:', data);
+          this.cd.detectChanges(); 
         },
         error: (err) => {
           console.error('Error fetching property by ID:', err);

@@ -40,7 +40,7 @@
     <button class="contact-btn">Contact Us <span class="arrow">→</span></button>
 
     <div>
-      <button mat-icon-button (click)="openProfile()" class="profile-button" aria-label="Profile">
+      <button *ngIf="authService.isLoggedIn$ | async" mat-icon-button (click)="openProfile()" class="profile-button" aria-label="Profile">
         <i class="fas fa-user-circle"></i>
       </button>
     </div>
