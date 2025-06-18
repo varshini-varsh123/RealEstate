@@ -38,7 +38,8 @@ export class LoginComponent {
         this.router.navigate(['/main']); 
       },
       error: (error) => {
-        console.error('Login failed:', error);
+        alert('Login failed. Please check your credentials.');
+        //console.error('Login failed:', error);
         this.loginError = true; 
       }
     });

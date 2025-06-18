@@ -22,18 +22,18 @@ export const routes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'properties', component: DashboardComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] } },
-    { path: 'propform', component: PropertyFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','SELLER','AGENT'] } },
-    {path: 'booking',component:BookingComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    {path:'main',component:MaindashboardComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    {path:'inquiry',component:InquiryComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    {path:'payment',component:PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    { path:'payment/:propertyId', component: PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] } },
+    { path: 'properties', component: DashboardComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] } },
+    { path: 'propform', component: PropertyFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','SELLER'] } },
+    {path: 'booking',component:BookingComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] }},
+    {path:'main',component:MaindashboardComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] }},
+    {path:'inquiry',component:InquiryComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] }},
+    {path:'payment',component:PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] }},
+    { path:'payment/:propertyId', component: PaymentComponent,canActivate: [AuthGuard,RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER'] } },
     {path:'about',component:AboutComponent},
     {path:'sidebar',component:SidebarComponent},
-    {path:'bookform',component:BookingFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    {path:'inqform',component:InquiryFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }},
-    {path:'pay-dash',component:PaymentDashboardComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER','AGENT'] }}
+    {path:'bookform',component:BookingFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER',''] }},
+    {path:'inqform',component:InquiryFormComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER',''] }},
+    {path:'pay-dash',component:PaymentDashboardComponent,canActivate: [RoleGuard],data: { roles: ['ADMIN','BUYER','SELLER',''] }}
     //{ path: 'unauthorized', component: UnauthorizedComponent }
     // { path: 'properties/:id', loadComponent: () =>
     //     import('./models/detail.component').then(m => m.PropertyDetailComponent)
